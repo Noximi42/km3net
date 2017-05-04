@@ -1,2 +1,4 @@
 Data/*.csv*
 Data/*.txt
+Output/Models/ConvNet*
+OutputReg/Models/ConvNet*
