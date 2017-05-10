@@ -33,17 +33,17 @@ with open(r'./numuxyzt.csv') as data:
 		#print(line)
 		values = line.split(',')
 
-		x = values[3]
-		y = values[4]
-		z = values[5]
+		x = (float(values[3]) + 1) / 2
+		y = (float(values[4]) + 1) / 2
+		z = (float(values[5]) + 1) / 2
 		E = math.log10(float(values[6])) / 10
 		
 
 		del values[:9]
 		if rd.random() < 0.1:
-			fTest.write('|labels ' + x + ' ' + ' ' + y + ' ' + z + ' ' + str(E) + ' |features ' + ' '.join(values))
+			fTest.write('|labels ' + str(x) + ' ' + ' ' + str(y) + ' ' + str(z) + ' ' + str(E) + ' |features ' + ' '.join(values))
 		else:
-			f.write('|labels ' + x + ' ' + ' ' + y + ' ' + z + ' ' + str(E) + ' |features ' + ' '.join(values))
+			f.write('|labels ' + str(x) + ' ' + ' ' + str(y) + ' ' + str(z) + ' ' + str(E) + ' |features ' + ' '.join(values))
 		
 		i += 1
 		if i % 1000 == 0:

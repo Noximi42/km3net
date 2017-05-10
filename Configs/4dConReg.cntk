@@ -6,10 +6,10 @@ precision = "float"; traceLevel = 1 ; deviceId = "auto"
 profilerEnabled = true
 parallelTrain = true
 
-rootDir = "/home/woody/capn/mppi027h" ; dataDir = "$rootDir$/Data" ;
+rootDir = "/home/woody/capn/mppi027h/km3net" ; dataDir = "$rootDir$/Data" ;
 outputDir = "$rootDir$/OutputReg" ;
 
-modelPath = "$outputDir$/Models/ConvNet"
+modelPath = "$outputDir$/Models/ConvNetEnergyReg"
 
 
 Train = {
@@ -17,7 +17,7 @@ Train = {
 
     BrainScriptNetworkBuilder = {
         imageShape = 11:11:18:100:1
-        labelDim = 4
+        labelDim = 1
 
         featMean = 128
         featScale = 1/256
@@ -69,32 +69,22 @@ Train = {
 
         learningRatesPerSample = 0.0015625*10:0.00046875*10:0.00015625*10:0.000046875
         momentumAsTimeConstant = 0*20:607.44
-        maxEpochs = 50
+        maxEpochs = 100
         L2RegWeight = 0.002
         dropoutRate = 0*5:0.5
 
-        numMBsToShowResult = 100
+        
 		
-		ParallelTrain = [
-			parallelizationMethod = BlockMomentumSGD
-			distributedMBReading = true
-			syncPerfStats = 5
-			BlockMomentumSGD=[
-				syncPeriod = 120000
-				resetSGDMomentum = true
-				useNesterovMomentum = true
-			]
-		]
     }
 
     reader = {
         readerType = "CNTKTextFormatReader"
-        file = "$DataDir$/TrainDataReg.txt"
+        file = "$DataDir$/TrainDataEnergyReg.txt"
         randomize = true
         keepDataInMemory = false     # cache all data in memory 	 
         input = {
             features = { dim = 217800 ; format = "dense" }
-            labels   = { dim = 4 ;   format = "dense" }
+            labels   = { dim = 1 ;   format = "dense" }
         }
     }
 }
@@ -106,10 +96,10 @@ Eval = {
     evalNodeNames = errs:top5Errs  # also test top-5 error rate
     reader = {
         readerType = "CNTKTextFormatReader"
-        file = "$DataDir$/TestDataReg.txt"
+        file = "$DataDir$/TestDataEnergyReg.txt"
         input = {
             features = { dim = 217800 ; format = "dense" }
-            labels   = { dim = 4 ;   format = "dense" }
+            labels   = { dim = 1 ;   format = "dense" }
         }
     }
 }

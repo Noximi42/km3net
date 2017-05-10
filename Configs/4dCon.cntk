@@ -6,7 +6,7 @@ precision = "float"; traceLevel = 1 ; deviceId = "auto"
 profilerEnabled = true
 parallelTrain = true
 
-rootDir = "/home/woody/capn/mppi027h" ; dataDir = "$rootDir$/Data" ;
+rootDir = "/home/woody/capn/mppi027h/km3net" ; dataDir = "$rootDir$/Data" ;
 outputDir = "$rootDir$/Output" ;
 
 modelPath = "$outputDir$/Models/ConvNet"
