@@ -1,0 +1,14 @@
+#!/bin/bash -l
+#PBS -l nodes=1:ppn=16:gtx1080,walltime=23:59:00
+#PBS -N cntkJob
+#PBS -o cnktJob7.out -e cntkJob7.err
+
+export LD_LIBRARY_PATH=~/cuDNN/cuda/lib64/
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/cntk/cntk/dependencies/lib/
+
+module load cuda
+module load openmpi/1.10.5-gcc
+
+cd /home/hpc/capn/mppi027h/
+
+mpiexec --npernode 4  cntk/cntk/bin/cntk  configFile=/home/woody/capn/mppi027h/Configs/4dCon.cntk 
