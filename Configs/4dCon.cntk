@@ -16,7 +16,7 @@ Train = {
     action = "train"
 
     BrainScriptNetworkBuilder = {
-        imageShape = 11:11:18:100:1
+        imageShape = 11:11:18:50:1
         labelDim = 2
 
         featMean = 128
@@ -93,7 +93,7 @@ Train = {
         randomize = true
         keepDataInMemory = false     # cache all data in memory 	 
         input = {
-            features = { dim = 217800 ; format = "dense" }
+            features = { dim = 108900 ; format = "dense" }
             labels   = { dim = 2 ;   format = "dense" }
         }
     }
@@ -108,7 +108,7 @@ Eval = {
         readerType = "CNTKTextFormatReader"
         file = "$DataDir$/TestData.txt"
         input = {
-            features = { dim = 217800 ; format = "dense" }
+            features = { dim = 108900 ; format = "dense" }
             labels   = { dim = 2 ;   format = "dense" }
         }
     }

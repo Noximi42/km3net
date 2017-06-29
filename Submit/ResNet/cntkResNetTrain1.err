@@ -1,0 +1,1561 @@
+CNTK 2.0rc2 (HEAD f19045, Apr 21 2017 07:25:22) on tg033 at 2017/05/28 08:40:47
+
+cntk/cntk/bin/cntk  configFile=/home/woody/capn/mppi027h/km3net/Configs/4dConUDResNet34.cntk
+CNTK 2.0rc2 (HEAD f19045, Apr 21 2017 07:25:22) on tg033 at 2017/05/28 08:40:47
+
+cntk/cntk/bin/cntk  configFile=/home/woody/capn/mppi027h/km3net/Configs/4dConUDResNet34.cntk
+CNTK 2.0rc2 (HEAD f19045, Apr 21 2017 07:25:22CNTK 2.0rc2 (HEAD f19045, Apr 21 2017 07:25:22) on tg033 at 2017/05/28 08:40:47
+
+cntk/cntk/bin/cntk  configFile=/home/woody/capn/mppi027h/km3net/Configs/4dConUDResNet34.cntk
+) on tg033 at 2017/05/28 08:40:47
+
+cntk/cntk/bin/cntk  configFile=/home/woody/capn/mppi027h/km3net/Configs/4dConUDResNet34.cntk
+ping [requestnodes (before change)]: 4 nodes pinging each other
+ping [requestnodes (before change)]: 4 nodes pinging each other
+ping [requestnodes (before change)]: 4 nodes pinging each other
+ping [requestnodes (before change)]: 4 nodes pinging each other
+ping [requestnodes (after change)]: 4 nodes pinging each other
+ping [requestnodes (after change)]: 4 nodes pinging each other
+ping [requestnodes (after change)]: 4 nodes pinging each other
+ping [requestnodes (after change)]: 4 nodes pinging each other
+requestnodes [MPIWrapperMpi]: using 4 out of 4 MPI nodes on a single host (4 requested); we (1) are in (participating)
+ping [mpihelper]: 4 nodes pinging each other
+requestnodes [MPIWrapperMpi]: using 4 out of 4 MPI nodes on a single host (4 requested); we (3) are in (participating)
+ping [mpihelper]: 4 nodes pinging each other
+requestnodes [MPIWrapperMpi]: using 4 out of 4 MPI nodes on a single host (4 requested); we (0) are in (participating)
+ping [mpihelper]: 4 nodes pinging each other
+requestnodes [MPIWrapperMpi]: using 4 out of 4 MPI nodes on a single host (4 requested); we (2) are in (participating)
+ping [mpihelper]: 4 nodes pinging each other
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Apr 21 2017 07:23:49
+		Last modified date: Thu Apr 20 22:01:43 2017
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		With ASGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-8.0
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local/cudnn-5.1
+		Build Branch: HEAD
+		Build SHA1: f190457aecbfe07c3fe27c89f36108bc2488727b
+		Built by Source/CNTK/buildinfo.h$$0 on ef88a481c30f
+		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
+		MPI distribution: Open MPI
+		MPI version: 1.10.3
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+		Device[1]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+		Device[2]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+		Device[3]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+-------------------------------------------------------------------
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: 4dConUDResNet34.cntk:command=Train
+configparameters: 4dConUDResNet34.cntk:configDir=/home/woody/capn/mppi027h/km3net/Configs
+configparameters: 4dConUDResNet34.cntk:dataDir=/home/woody/capn/mppi027h/km3net/Data/numuUpDown
+configparameters: 4dConUDResNet34.cntk:deviceId=auto
+configparameters: 4dConUDResNet34.cntk:Eval={
+    action = "eval"
+    minibatchSize = 32
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "/home/woody/capn/mppi027h/km3net/Data/numuUpDown/TrainData.txt"
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+configparameters: 4dConUDResNet34.cntk:modelPath=/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain
+configparameters: 4dConUDResNet34.cntk:outputDir=/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet
+configparameters: 4dConUDResNet34.cntk:parallelTrain=true
+configparameters: 4dConUDResNet34.cntk:precision=float
+configparameters: 4dConUDResNet34.cntk:profilerEnabled=true
+configparameters: 4dConUDResNet34.cntk:rootDir=/home/woody/capn/mppi027h/km3net
+configparameters: 4dConUDResNet34.cntk:traceLevel=1
+configparameters: 4dConUDResNet34.cntk:Train={
+    action = "train"
+    BrainScriptNetworkBuilder = {
+        include "/home/woody/capn/mppi027h/km3net/Configs/Macros.bs"
+imageShape  = 11:11:18:50:1                  
+labelDim    = 2                      		 
+		cMap        = 8:16:32:64
+        numLayers   = 3:3:5:2
+        bnTimeConst = 4096
+        model = Sequential(
+            ConvBNReLULayer {cMap[0], (5:5:5:5), (1:1:1:1), bnTimeConst} :
+            ResNetBasicStack {numLayers[0], cMap[0], bnTimeConst} :
+            ResNetBasicInc {cMap[1], (2:2:2:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[1], cMap[1], bnTimeConst} :
+            ResNetBasicInc {cMap[2], (2:2:3:4), bnTimeConst} :
+            ResNetBasicStack {numLayers[2], cMap[2], bnTimeConst} :
+            ResNetBasicInc {cMap[3], (1:1:1:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[3], cMap[3], bnTimeConst} :
+            AveragePoolingLayer {(3:3:3:3), stride = 1} :
+            LinearLayer {labelDim, init = 'uniform'}
+        )
+        features    = Input {imageShape}
+        labels      = Input {labelDim}
+        z           = model (features)
+        ce          = CrossEntropyWithSoftmax   (labels, z)
+        errs        = ClassificationError       (labels, z)
+        top5Errs    = ClassificationError       (labels, z, topN = 5)
+        featureNodes    = (features)
+        labelNodes      = (labels)
+        criterionNodes  = (ce)
+evaluationNodes = (errs) 
+        outputNodes     = (z)
+    }
+    SGD = {
+        epochSize = 30000
+        minibatchSize = 128
+        maxEpochs = 80
+        learningRatesPerMB = 1*20: 0.1*20: 0.01*20: 0.001
+        momentumPerMB = 0.9
+        gradUpdateType = "None"
+        L2RegWeight = 0.0001
+        dropoutRate = 0
+        numMBsToShowResult = 500
+        disableRegInBatchNormalization = true
+        ParallelTrain = {
+            parallelizationMethod = "DataParallelSGD"
+            distributedMBReading = true
+            parallelizationStartEpoch = 1
+            DataParallelSGD = {
+                gradientBits = 32
+            }
+        }
+	}
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "/home/woody/capn/mppi027h/km3net/Data/numuUpDown/TrainData.txt"
+        randomize = true
+keepDataInMemory = false     
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+Commands: Train
+precision = "float"
+
+##############################################################################
+#                                                                            #
+# Train command (train action)                                               #
+#                                                                            #
+##############################################################################
+
+
+Starting from checkpoint. Loading network from '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.11'.
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Apr 21 2017 07:23:49
+		Last modified date: Thu Apr 20 22:01:43 2017
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		With ASGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-8.0
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local/cudnn-5.1
+		Build Branch: HEAD
+		Build SHA1: f190457aecbfe07c3fe27c89f36108bc2488727b
+		Built by Source/CNTK/buildinfo.h$$0 on ef88a481c30f
+		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
+		MPI distribution: Open MPI
+		MPI version: 1.10.3
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8001 MB
+		Device[1]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+		Device[2]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+		Device[3]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+-------------------------------------------------------------------
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: 4dConUDResNet34.cntk:command=Train
+configparameters: 4dConUDResNet34.cntk:configDir=/home/woody/capn/mppi027h/km3net/Configs
+configparameters: 4dConUDResNet34.cntk:dataDir=/home/woody/capn/mppi027h/km3net/Data/numuUpDown
+configparameters: 4dConUDResNet34.cntk:deviceId=auto
+configparameters: 4dConUDResNet34.cntk:Eval={
+    action = "eval"
+    minibatchSize = 32
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "/home/woody/capn/mppi027h/km3net/Data/numuUpDown/TrainData.txt"
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+configparameters: 4dConUDResNet34.cntk:modelPath=/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain
+configparameters: 4dConUDResNet34.cntk:outputDir=/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet
+configparameters: 4dConUDResNet34.cntk:parallelTrain=true
+configparameters: 4dConUDResNet34.cntk:precision=float
+configparameters: 4dConUDResNet34.cntk:profilerEnabled=true
+configparameters: 4dConUDResNet34.cntk:rootDir=/home/woody/capn/mppi027h/km3net
+configparameters: 4dConUDResNet34.cntk:traceLevel=1
+configparameters: 4dConUDResNet34.cntk:Train={
+    action = "train"
+    BrainScriptNetworkBuilder = {
+        include "/home/woody/capn/mppi027h/km3net/Configs/Macros.bs"
+imageShape  = 11:11:18:50:1                  
+labelDim    = 2                      		 
+		cMap        = 8:16:32:64
+        numLayers   = 3:3:5:2
+        bnTimeConst = 4096
+        model = Sequential(
+            ConvBNReLULayer {cMap[0], (5:5:5:5), (1:1:1:1), bnTimeConst} :
+            ResNetBasicStack {numLayers[0], cMap[0], bnTimeConst} :
+            ResNetBasicInc {cMap[1], (2:2:2:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[1], cMap[1], bnTimeConst} :
+            ResNetBasicInc {cMap[2], (2:2:3:4), bnTimeConst} :
+            ResNetBasicStack {numLayers[2], cMap[2], bnTimeConst} :
+            ResNetBasicInc {cMap[3], (1:1:1:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[3], cMap[3], bnTimeConst} :
+            AveragePoolingLayer {(3:3:3:3), stride = 1} :
+            LinearLayer {labelDim, init = 'uniform'}
+        )
+        features    = Input {imageShape}
+        labels      = Input {labelDim}
+        z           = model (features)
+        ce          = CrossEntropyWithSoftmax   (labels, z)
+        errs        = ClassificationError       (labels, z)
+        top5Errs    = ClassificationError       (labels, z, topN = 5)
+        featureNodes    = (features)
+        labelNodes      = (labels)
+        criterionNodes  = (ce)
+evaluationNodes = (errs) 
+        outputNodes     = (z)
+    }
+    SGD = {
+        epochSize = 30000
+        minibatchSize = 128
+        maxEpochs = 80
+        learningRatesPerMB = 1*20: 0.1*20: 0.01*20: 0.001
+        momentumPerMB = 0.9
+        gradUpdateType = "None"
+        L2RegWeight = 0.0001
+        dropoutRate = 0
+        numMBsToShowResult = 500
+        disableRegInBatchNormalization = true
+        ParallelTrain = {
+            parallelizationMethod = "DataParallelSGD"
+            distributedMBReading = true
+            parallelizationStartEpoch = 1
+            DataParallelSGD = {
+                gradientBits = 32
+            }
+        }
+	}
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "/home/woody/capn/mppi027h/km3net/Data/numuUpDown/TrainData.txt"
+        randomize = true
+keepDataInMemory = false     
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+Commands: Train
+precision = "float"
+
+##############################################################################
+#                                                                            #
+# Train command (train action)                                               #
+#                                                                            #
+##############################################################################
+
+LockDevice: Failed to lock GPU 0 for exclusive use.
+
+Starting from checkpoint. Loading network from '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.11'.
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Apr 21 2017 07:23:49
+		Last modified date: Thu Apr 20 22:01:43 2017
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		With ASGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-8.0
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local/cudnn-5.1
+		Build Branch: HEAD
+		Build SHA1: f190457aecbfe07c3fe27c89f36108bc2488727b
+		Built by Source/CNTK/buildinfo.h$$0 on ef88a481c30f
+		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
+		MPI distribution: Open MPI
+		MPI version: 1.10.3
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 7997 MB
+		Device[1]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 7997 MB
+		Device[2]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+		Device[3]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+-------------------------------------------------------------------
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: 4dConUDResNet34.cntk:command=Train
+configparameters: 4dConUDResNet34.cntk:configDir=/home/woody/capn/mppi027h/km3net/Configs
+configparameters: 4dConUDResNet34.cntk:dataDir=/home/woody/capn/mppi027h/km3net/Data/numuUpDown
+configparameters: 4dConUDResNet34.cntk:deviceId=auto
+configparameters: 4dConUDResNet34.cntk:Eval={
+    action = "eval"
+    minibatchSize = 32
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "/home/woody/capn/mppi027h/km3net/Data/numuUpDown/TrainData.txt"
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+configparameters: 4dConUDResNet34.cntk:modelPath=/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain
+configparameters: 4dConUDResNet34.cntk:outputDir=/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet
+configparameters: 4dConUDResNet34.cntk:parallelTrain=true
+configparameters: 4dConUDResNet34.cntk:precision=float
+configparameters: 4dConUDResNet34.cntk:profilerEnabled=true
+configparameters: 4dConUDResNet34.cntk:rootDir=/home/woody/capn/mppi027h/km3net
+configparameters: 4dConUDResNet34.cntk:traceLevel=1
+configparameters: 4dConUDResNet34.cntk:Train={
+    action = "train"
+    BrainScriptNetworkBuilder = {
+        include "/home/woody/capn/mppi027h/km3net/Configs/Macros.bs"
+imageShape  = 11:11:18:50:1                  
+labelDim    = 2                      		 
+		cMap        = 8:16:32:64
+        numLayers   = 3:3:5:2
+        bnTimeConst = 4096
+        model = Sequential(
+            ConvBNReLULayer {cMap[0], (5:5:5:5), (1:1:1:1), bnTimeConst} :
+            ResNetBasicStack {numLayers[0], cMap[0], bnTimeConst} :
+            ResNetBasicInc {cMap[1], (2:2:2:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[1], cMap[1], bnTimeConst} :
+            ResNetBasicInc {cMap[2], (2:2:3:4), bnTimeConst} :
+            ResNetBasicStack {numLayers[2], cMap[2], bnTimeConst} :
+            ResNetBasicInc {cMap[3], (1:1:1:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[3], cMap[3], bnTimeConst} :
+            AveragePoolingLayer {(3:3:3:3), stride = 1} :
+            LinearLayer {labelDim, init = 'uniform'}
+        )
+        features    = Input {imageShape}
+        labels      = Input {labelDim}
+        z           = model (features)
+        ce          = CrossEntropyWithSoftmax   (labels, z)
+        errs        = ClassificationError       (labels, z)
+        top5Errs    = ClassificationError       (labels, z, topN = 5)
+        featureNodes    = (features)
+        labelNodes      = (labels)
+        criterionNodes  = (ce)
+evaluationNodes = (errs) 
+        outputNodes     = (z)
+    }
+    SGD = {
+        epochSize = 30000
+        minibatchSize = 128
+        maxEpochs = 80
+        learningRatesPerMB = 1*20: 0.1*20: 0.01*20: 0.001
+        momentumPerMB = 0.9
+        gradUpdateType = "None"
+        L2RegWeight = 0.0001
+        dropoutRate = 0
+        numMBsToShowResult = 500
+        disableRegInBatchNormalization = true
+        ParallelTrain = {
+            parallelizationMethod = "DataParallelSGD"
+            distributedMBReading = true
+            parallelizationStartEpoch = 1
+            DataParallelSGD = {
+                gradientBits = 32
+            }
+        }
+	}
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "/home/woody/capn/mppi027h/km3net/Data/numuUpDown/TrainData.txt"
+        randomize = true
+keepDataInMemory = false     
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+Commands: Train
+precision = "float"
+
+##############################################################################
+#                                                                            #
+# Train command (train action)                                               #
+#                                                                            #
+##############################################################################
+
+LockDevice: Failed to lock GPU 1 for exclusive use.
+LockDevice: Failed to lock GPU 0 for exclusive use.
+
+Starting from checkpoint. Loading network from '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.11'.
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Apr 21 2017 07:23:49
+		Last modified date: Thu Apr 20 22:01:43 2017
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		With ASGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-8.0
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local/cudnn-5.1
+		Build Branch: HEAD
+		Build SHA1: f190457aecbfe07c3fe27c89f36108bc2488727b
+		Built by Source/CNTK/buildinfo.h$$0 on ef88a481c30f
+		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
+		MPI distribution: Open MPI
+		MPI version: 1.10.3
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 7973 MB
+		Device[1]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 7973 MB
+		Device[2]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 7985 MB
+		Device[3]: cores = 3840; computeCapability = 6.1; type = "GeForce GTX 1080"; total memory = 8114 MB; free memory = 8112 MB
+-------------------------------------------------------------------
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: 4dConUDResNet34.cntk:command=Train
+configparameters: 4dConUDResNet34.cntk:configDir=/home/woody/capn/mppi027h/km3net/Configs
+configparameters: 4dConUDResNet34.cntk:dataDir=/home/woody/capn/mppi027h/km3net/Data/numuUpDown
+configparameters: 4dConUDResNet34.cntk:deviceId=auto
+configparameters: 4dConUDResNet34.cntk:Eval={
+    action = "eval"
+    minibatchSize = 32
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "/home/woody/capn/mppi027h/km3net/Data/numuUpDown/TrainData.txt"
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+configparameters: 4dConUDResNet34.cntk:modelPath=/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain
+configparameters: 4dConUDResNet34.cntk:outputDir=/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet
+configparameters: 4dConUDResNet34.cntk:parallelTrain=true
+configparameters: 4dConUDResNet34.cntk:precision=float
+configparameters: 4dConUDResNet34.cntk:profilerEnabled=true
+configparameters: 4dConUDResNet34.cntk:rootDir=/home/woody/capn/mppi027h/km3net
+configparameters: 4dConUDResNet34.cntk:traceLevel=1
+configparameters: 4dConUDResNet34.cntk:Train={
+    action = "train"
+    BrainScriptNetworkBuilder = {
+        include "/home/woody/capn/mppi027h/km3net/Configs/Macros.bs"
+imageShape  = 11:11:18:50:1                  
+labelDim    = 2                      		 
+		cMap        = 8:16:32:64
+        numLayers   = 3:3:5:2
+        bnTimeConst = 4096
+        model = Sequential(
+            ConvBNReLULayer {cMap[0], (5:5:5:5), (1:1:1:1), bnTimeConst} :
+            ResNetBasicStack {numLayers[0], cMap[0], bnTimeConst} :
+            ResNetBasicInc {cMap[1], (2:2:2:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[1], cMap[1], bnTimeConst} :
+            ResNetBasicInc {cMap[2], (2:2:3:4), bnTimeConst} :
+            ResNetBasicStack {numLayers[2], cMap[2], bnTimeConst} :
+            ResNetBasicInc {cMap[3], (1:1:1:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[3], cMap[3], bnTimeConst} :
+            AveragePoolingLayer {(3:3:3:3), stride = 1} :
+            LinearLayer {labelDim, init = 'uniform'}
+        )
+        features    = Input {imageShape}
+        labels      = Input {labelDim}
+        z           = model (features)
+        ce          = CrossEntropyWithSoftmax   (labels, z)
+        errs        = ClassificationError       (labels, z)
+        top5Errs    = ClassificationError       (labels, z, topN = 5)
+        featureNodes    = (features)
+        labelNodes      = (labels)
+        criterionNodes  = (ce)
+evaluationNodes = (errs) 
+        outputNodes     = (z)
+    }
+    SGD = {
+        epochSize = 30000
+        minibatchSize = 128
+        maxEpochs = 80
+        learningRatesPerMB = 1*20: 0.1*20: 0.01*20: 0.001
+        momentumPerMB = 0.9
+        gradUpdateType = "None"
+        L2RegWeight = 0.0001
+        dropoutRate = 0
+        numMBsToShowResult = 500
+        disableRegInBatchNormalization = true
+        ParallelTrain = {
+            parallelizationMethod = "DataParallelSGD"
+            distributedMBReading = true
+            parallelizationStartEpoch = 1
+            DataParallelSGD = {
+                gradientBits = 32
+            }
+        }
+	}
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "/home/woody/capn/mppi027h/km3net/Data/numuUpDown/TrainData.txt"
+        randomize = true
+keepDataInMemory = false     
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+Commands: Train
+precision = "float"
+
+##############################################################################
+#                                                                            #
+# Train command (train action)                                               #
+#                                                                            #
+##############################################################################
+
+LockDevice: Failed to lock GPU 0 for exclusive use.
+LockDevice: Failed to lock GPU 1 for exclusive use.
+LockDevice: Failed to lock GPU 2 for exclusive use.
+
+Starting from checkpoint. Loading network from '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.11'.
+z.x.x.x.x.x.x.x.x.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 1, Output: 11 x 11 x 18 x 50 x 8, Kernel: 5 x 5 x 5 x 5 x 1, Map: 8, Stride: 1 x 1 x 1 x 1 x 1, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+z.x.x.x.x.x.x.x.x.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 1, Output: 11 x 11 x 18 x 50 x 8, Kernel: 5 x 5 x 5 x 5 x 1, Map: 8, Stride: 1 x 1 x 1 x 1 x 1, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 1, Output: 11 x 11 x 18 x 50 x 8, Kernel: 5 x 5 x 5 x 5 x 1, Map: 8, Stride: 1 x 1 x 1 x 1 x 1, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+z.x.x.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 1, Output: 11 x 11 x 18 x 50 x 8, Kernel: 5 x 5 x 5 x 5 x 1, Map: 8, Stride: 1 x 1 x 1 x 1 x 1, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 8, Map: 16, Stride: 2 x 2 x 2 x 2 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 8, Map: 16, Stride: 2 x 2 x 2 x 2 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 6 x 6 x 9 x 25 x 16, Kernel: 1 x 1 x 1 x 1 x 8, Map: 16, Stride: 2 x 2 x 2 x 2 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 6 x 6 x 9 x 25 x 16, Kernel: 1 x 1 x 1 x 1 x 8, Map: 16, Stride: 2 x 2 x 2 x 2 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 8, Map: 16, Stride: 2 x 2 x 2 x 2 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 16, Map: 32, Stride: 2 x 2 x 3 x 4 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 3 x 3 x 3 x 7 x 32, Kernel: 1 x 1 x 1 x 1 x 16, Map: 32, Stride: 2 x 2 x 3 x 4 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 16, Map: 32, Stride: 2 x 2 x 3 x 4 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 6 x 6 x 9 x 25 x 16, Kernel: 1 x 1 x 1 x 1 x 8, Map: 16, Stride: 2 x 2 x 2 x 2 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 3 x 3 x 3 x 7 x 32, Kernel: 1 x 1 x 1 x 1 x 16, Map: 32, Stride: 2 x 2 x 3 x 4 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 32, Map: 64, Stride: 1 x 1 x 1 x 2 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 4 x 64, Kernel: 1 x 1 x 1 x 1 x 32, Map: 64, Stride: 1 x 1 x 1 x 2 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+_z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+Using CNTK batch normalization engine.
+z.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+_z.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 32, Map: 64, Stride: 1 x 1 x 1 x 2 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 4 x 64, Kernel: 1 x 1 x 1 x 1 x 32, Map: 64, Stride: 1 x 1 x 1 x 2 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 1 x 1 x 1 x 2 x 64, Kernel: 3 x 3 x 3 x 3 x 1, Map: 1, Stride: 1 x 1 x 1 x 1 x 1, Sharing: (1, 1, 1, 1, 1), AutoPad: (0, 0, 0, 0, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+z.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 16, Map: 32, Stride: 2 x 2 x 3 x 4 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 1 x 1 x 1 x 2 x 64, Kernel: 3 x 3 x 3 x 3 x 1, Map: 1, Stride: 1 x 1 x 1 x 1 x 1, Sharing: (1, 1, 1, 1, 1), AutoPad: (0, 0, 0, 0, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+_z.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 3 x 3 x 3 x 7 x 32, Kernel: 1 x 1 x 1 x 1 x 16, Map: 32, Stride: 2 x 2 x 3 x 4 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 32, Map: 64, Stride: 1 x 1 x 1 x 2 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 4 x 64, Kernel: 1 x 1 x 1 x 1 x 32, Map: 64, Stride: 1 x 1 x 1 x 2 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 1 x 1 x 1 x 2 x 64, Kernel: 3 x 3 x 3 x 3 x 1, Map: 1, Stride: 1 x 1 x 1 x 1 x 1, Sharing: (1, 1, 1, 1, 1), AutoPad: (0, 0, 0, 0, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+__z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 11 x 11 x 18 x 50 x 8, Kernel: 3 x 3 x 3 x 3 x 8, Map: 8, Stride: 1 x 1 x 1 x 1 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 8, Map: 16, Stride: 2 x 2 x 2 x 2 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+__z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 11 x 11 x 18 x 50 x 8, Output: 6 x 6 x 9 x 25 x 16, Kernel: 1 x 1 x 1 x 1 x 8, Map: 16, Stride: 2 x 2 x 2 x 2 x 8, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 6 x 6 x 9 x 25 x 16, Kernel: 3 x 3 x 3 x 3 x 16, Map: 16, Stride: 1 x 1 x 1 x 1 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 16, Map: 32, Stride: 2 x 2 x 3 x 4 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 6 x 6 x 9 x 25 x 16, Output: 3 x 3 x 3 x 7 x 32, Kernel: 1 x 1 x 1 x 1 x 16, Map: 32, Stride: 2 x 2 x 3 x 4 x 16, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 7 x 32, Kernel: 3 x 3 x 3 x 3 x 32, Map: 32, Stride: 1 x 1 x 1 x 1 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 32, Map: 64, Stride: 1 x 1 x 1 x 2 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+_z.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.s.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 7 x 32, Output: 3 x 3 x 3 x 4 x 64, Kernel: 1 x 1 x 1 x 1 x 32, Map: 64, Stride: 1 x 1 x 1 x 2 x 32, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.b.x._.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x.x.b.x.c: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 3 x 3 x 3 x 4 x 64, Kernel: 3 x 3 x 3 x 3 x 64, Map: 64, Stride: 1 x 1 x 1 x 1 x 64, Sharing: (1, 1, 1, 1, 1), AutoPad: (1, 1, 1, 1, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+Using CNTK batch normalization engine.
+z.x: using reference convolution engine for geometry, could be VERY SLOW: Input: 3 x 3 x 3 x 4 x 64, Output: 1 x 1 x 1 x 2 x 64, Kernel: 3 x 3 x 3 x 3 x 1, Map: 1, Stride: 1 x 1 x 1 x 1 x 1, Sharing: (1, 1, 1, 1, 1), AutoPad: (0, 0, 0, 0, 0), LowerPad: 0 x 0 x 0 x 0 x 0, UpperPad: 0 x 0 x 0 x 0 x 0.
+
+Model has 348 nodes. Using GPU 3.
+
+Training criterion:   ce = CrossEntropyWithSoftmax
+Evaluation criterion: errs = ClassificationError
+
+Model has 348 nodes. Using GPU 1.
+
+Training criterion:   ce = CrossEntropyWithSoftmax
+Evaluation criterion: errs = ClassificationError
+
+Model has 348 nodes. Using GPU 2.
+
+Training criterion:   ce = CrossEntropyWithSoftmax
+Evaluation criterion: errs = ClassificationError
+
+Model has 348 nodes. Using GPU 0.
+
+Training criterion:   ce = CrossEntropyWithSoftmax
+Evaluation criterion: errs = ClassificationError
+
+Training 2975322 parameters in 110 out of 110 parameter tensors and 235 nodes with gradient:
+
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 16]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 64]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [5 x 5 x 5 x 5 x 1 x 8]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'model.arrayOfFunctions[9].W' (LearnableParameter operation) : [2 x 1 x 1 x 1 x 2 x 64]
+	Node 'model.arrayOfFunctions[9].b' (LearnableParameter operation) : [2]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+
+Training 2975322 parameters in 110 out of 110 parameter tensors and 235 nodes with gradient:
+
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 16]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 32 x 64]
+	Node 'z.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 16 x 32]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 64]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+
+Training 2975322 parameters in 110 out of 110 parameter tensors and 235 nodes with gradient:
+
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 16]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 8 x 16]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [5 x 5 x 5 x 5 x 1 x 8]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'model.arrayOfFunctions[9].W' (LearnableParameter operation) : [2 x 1 x 1 x 1 x 2 x 64]
+	Node 'model.arrayOfFunctions[9].b' (LearnableParameter operation) : [2]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+
+Training 2975322 parameters in 110 out of 110 parameter tensors and 235 nodes with gradient:
+
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 16]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 32 x 64]
+	Node 'z.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 64]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+
+Initializing dataParallelSGD with FP32 aggregation.
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node '__z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 64]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 16 x 32]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [5 x 5 x 5 x 5 x 1 x 8]
+	Node '_z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 16 x 16]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node '_z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [5 x 5 x 5 x 5 x 1 x 8]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'model.arrayOfFunctions[9].W' (LearnableParameter operation) : [2 x 1 x 1 x 1 x 2 x 64]
+	Node 'model.arrayOfFunctions[9].b' (LearnableParameter operation) : [2]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'model.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'model.arrayOfFunctions[9].W' (LearnableParameter operation) : [2 x 1 x 1 x 1 x 2 x 64]
+	Node 'model.arrayOfFunctions[9].b' (LearnableParameter operation) : [2]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 8 x 16]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 32 x 64]
+	Node 'z.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+
+Initializing dataParallelSGD with FP32 aggregation.
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 64 x 64]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 32 x 64]
+	Node 'z.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [64 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 16 x 32]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 16 x 32]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 8 x 16]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[0].W' (LearnableParameter operation) : [1 x 1 x 1 x 1 x 8 x 16]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[1].bias' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.x.s.arrayOfFunctions[1].scale' (LearnableParameter operation) : [16 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 32 x 32]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [32 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[0].arrayOfFunctions[0].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[0].W' (LearnableParameter operation) : [3 x 3 x 3 x 3 x 8 x 8]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].bias' (LearnableParameter operation) : [8 x 1]
+	Node 'z.x.x.x.x.x.x.x.x.x.x.b.arrayOfFunctions[1].arrayOfFunctions[1].scale' (LearnableParameter operation) : [8 x 1]
+
+Initializing dataParallelSGD with FP32 aggregation.
+Initializing dataParallelSGD with FP32 aggregation.
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+
+Starting Epoch 12: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 12: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 12: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 12: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[12 of 80]: [Training] ce = 0.30223245 * 30000; errs = 13.783% * 30000; totalSamplesSeen = 360000; learningRatePerSample = 0.0078125; epochTime=7918.84s
+Finished Epoch[12 of 80]: [Training] ce = 0.30223245 * 30000; errs = 13.783% * 30000; totalSamplesSeen = 360000; learningRatePerSample = 0.0078125; epochTime=7918.84s
+Finished Epoch[12 of 80]: [Training] ce = 0.30223245 * 30000; errs = 13.783% * 30000; totalSamplesSeen = 360000; learningRatePerSample = 0.0078125; epochTime=7918.84s
+Finished Epoch[12 of 80]: [Training] ce = 0.30223245 * 30000; errs = 13.783% * 30000; totalSamplesSeen = 360000; learningRatePerSample = 0.0078125; epochTime=7918.84s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.12'
+
+Starting Epoch 13: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 13: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 13: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 13: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[13 of 80]: [Training] ce = 0.28651192 * 30000; errs = 13.047% * 30000; totalSamplesSeen = 390000; learningRatePerSample = 0.0078125; epochTime=7939.98s
+Finished Epoch[13 of 80]: [Training] ce = 0.28651192 * 30000; errs = 13.047% * 30000; totalSamplesSeen = 390000; learningRatePerSample = 0.0078125; epochTime=7939.98s
+Finished Epoch[13 of 80]: [Training] ce = 0.28651192 * 30000; errs = 13.047% * 30000; totalSamplesSeen = 390000; learningRatePerSample = 0.0078125; epochTime=7939.98s
+Finished Epoch[13 of 80]: [Training] ce = 0.28651192 * 30000; errs = 13.047% * 30000; totalSamplesSeen = 390000; learningRatePerSample = 0.0078125; epochTime=7939.98s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.13'
+
+Starting Epoch 14: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 14: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 14: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 14: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[14 of 80]: [Training] ce = 0.26283176 * 30000; errs = 11.733% * 30000; totalSamplesSeen = 420000; learningRatePerSample = 0.0078125; epochTime=7868.86s
+Finished Epoch[14 of 80]: [Training] ce = 0.26283176 * 30000; errs = 11.733% * 30000; totalSamplesSeen = 420000; learningRatePerSample = 0.0078125; epochTime=7868.86s
+Finished Epoch[14 of 80]: [Training] ce = 0.26283176 * 30000; errs = 11.733% * 30000; totalSamplesSeen = 420000; learningRatePerSample = 0.0078125; epochTime=7868.86s
+Finished Epoch[14 of 80]: [Training] ce = 0.26283176 * 30000; errs = 11.733% * 30000; totalSamplesSeen = 420000; learningRatePerSample = 0.0078125; epochTime=7868.86s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.14'
+
+Starting Epoch 15: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 15: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 15: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 15: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[15 of 80]: [Training] ce = 0.26138181 * 30000; errs = 11.707% * 30000; totalSamplesSeen = 450000; learningRatePerSample = 0.0078125; epochTime=7892.97s
+Finished Epoch[15 of 80]: [Training] ce = 0.26138181 * 30000; errs = 11.707% * 30000; totalSamplesSeen = 450000; learningRatePerSample = 0.0078125; epochTime=7892.97s
+Finished Epoch[15 of 80]: [Training] ce = 0.26138181 * 30000; errs = 11.707% * 30000; totalSamplesSeen = 450000; learningRatePerSample = 0.0078125; epochTime=7892.97s
+Finished Epoch[15 of 80]: [Training] ce = 0.26138181 * 30000; errs = 11.707% * 30000; totalSamplesSeen = 450000; learningRatePerSample = 0.0078125; epochTime=7892.97s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.15'
+
+Starting Epoch 16: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 16: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 16: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 16: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[16 of 80]: [Training] ce = 0.24363094 * 30000; errs = 10.987% * 30000; totalSamplesSeen = 480000; learningRatePerSample = 0.0078125; epochTime=7958.61s
+Finished Epoch[16 of 80]: [Training] ce = 0.24363094 * 30000; errs = 10.987% * 30000; totalSamplesSeen = 480000; learningRatePerSample = 0.0078125; epochTime=7958.61s
+Finished Epoch[16 of 80]: [Training] ce = 0.24363094 * 30000; errs = 10.987% * 30000; totalSamplesSeen = 480000; learningRatePerSample = 0.0078125; epochTime=7958.61s
+Finished Epoch[16 of 80]: [Training] ce = 0.24363094 * 30000; errs = 10.987% * 30000; totalSamplesSeen = 480000; learningRatePerSample = 0.0078125; epochTime=7958.61s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.16'
+
+Starting Epoch 17: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 17: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 17: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 17: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[17 of 80]: [Training] ce = 0.22421175 * 30000; errs = 9.893% * 30000; totalSamplesSeen = 510000; learningRatePerSample = 0.0078125; epochTime=7865.15s
+Finished Epoch[17 of 80]: [Training] ce = 0.22421175 * 30000; errs = 9.893% * 30000; totalSamplesSeen = 510000; learningRatePerSample = 0.0078125; epochTime=7865.15s
+Finished Epoch[17 of 80]: [Training] ce = 0.22421175 * 30000; errs = 9.893% * 30000; totalSamplesSeen = 510000; learningRatePerSample = 0.0078125; epochTime=7865.15s
+Finished Epoch[17 of 80]: [Training] ce = 0.22421175 * 30000; errs = 9.893% * 30000; totalSamplesSeen = 510000; learningRatePerSample = 0.0078125; epochTime=7865.15s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.17'
+
+Starting Epoch 18: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 18: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 18: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 18: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[18 of 80]: [Training] ce = 0.22948691 * 30000; errs = 10.150% * 30000; totalSamplesSeen = 540000; learningRatePerSample = 0.0078125; epochTime=7958.81s
+Finished Epoch[18 of 80]: [Training] ce = 0.22948691 * 30000; errs = 10.150% * 30000; totalSamplesSeen = 540000; learningRatePerSample = 0.0078125; epochTime=7958.81s
+Finished Epoch[18 of 80]: [Training] ce = 0.22948691 * 30000; errs = 10.150% * 30000; totalSamplesSeen = 540000; learningRatePerSample = 0.0078125; epochTime=7958.82s
+Finished Epoch[18 of 80]: [Training] ce = 0.22948691 * 30000; errs = 10.150% * 30000; totalSamplesSeen = 540000; learningRatePerSample = 0.0078125; epochTime=7958.82s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.18'
+
+Starting Epoch 19: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 19: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 19: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 19: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[19 of 80]: [Training] ce = 0.21156750 * 30000; errs = 9.310% * 30000; totalSamplesSeen = 570000; learningRatePerSample = 0.0078125; epochTime=7964.42s
+Finished Epoch[19 of 80]: [Training] ce = 0.21156750 * 30000; errs = 9.310% * 30000; totalSamplesSeen = 570000; learningRatePerSample = 0.0078125; epochTime=7964.42s
+Finished Epoch[19 of 80]: [Training] ce = 0.21156750 * 30000; errs = 9.310% * 30000; totalSamplesSeen = 570000; learningRatePerSample = 0.0078125; epochTime=7964.42s
+Finished Epoch[19 of 80]: [Training] ce = 0.21156750 * 30000; errs = 9.310% * 30000; totalSamplesSeen = 570000; learningRatePerSample = 0.0078125; epochTime=7964.42s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.19'
+
+Starting Epoch 20: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 20: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 20: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 20: learning rate per sample = 0.007812  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[20 of 80]: [Training] ce = 0.20757505 * 30000; errs = 9.230% * 30000; totalSamplesSeen = 600000; learningRatePerSample = 0.0078125; epochTime=7946.43s
+Finished Epoch[20 of 80]: [Training] ce = 0.20757505 * 30000; errs = 9.230% * 30000; totalSamplesSeen = 600000; learningRatePerSample = 0.0078125; epochTime=7946.43s
+Finished Epoch[20 of 80]: [Training] ce = 0.20757505 * 30000; errs = 9.230% * 30000; totalSamplesSeen = 600000; learningRatePerSample = 0.0078125; epochTime=7946.43s
+Finished Epoch[20 of 80]: [Training] ce = 0.20757505 * 30000; errs = 9.230% * 30000; totalSamplesSeen = 600000; learningRatePerSample = 0.0078125; epochTime=7946.43s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.20'
+
+Starting Epoch 21: learning rate per sample = 0.000781  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 21: learning rate per sample = 0.000781  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 21: learning rate per sample = 0.000781  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 21: learning rate per sample = 0.000781  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+Finished Epoch[21 of 80]: [Training] ce = 0.19061676 * 30000; errs = 8.170% * 30000; totalSamplesSeen = 630000; learningRatePerSample = 0.00078125001; epochTime=7936.59s
+Finished Epoch[21 of 80]: [Training] ce = 0.19061676 * 30000; errs = 8.170% * 30000; totalSamplesSeen = 630000; learningRatePerSample = 0.00078125001; epochTime=7936.59s
+Finished Epoch[21 of 80]: [Training] ce = 0.19061676 * 30000; errs = 8.170% * 30000; totalSamplesSeen = 630000; learningRatePerSample = 0.00078125001; epochTime=7936.59s
+Finished Epoch[21 of 80]: [Training] ce = 0.19061676 * 30000; errs = 8.170% * 30000; totalSamplesSeen = 630000; learningRatePerSample = 0.00078125001; epochTime=7936.59s
+SGD: Saving checkpoint model '/home/woody/capn/mppi027h/km3net/Output/OutputRegResNet/Models/ConvNetEnergyRegOnTrain.21'
+
+Starting Epoch 22: learning rate per sample = 0.000781  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 22: learning rate per sample = 0.000781  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 22: learning rate per sample = 0.000781  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting Epoch 22: learning rate per sample = 0.000781  effective momentum = 0.900000  momentum as time constant = 1214.9 samples
+
+Starting minibatch loop, DataParallelSGD training (myRank = 2, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+
+Starting minibatch loop, DataParallelSGD training (myRank = 3, numNodes = 4, numGradientBits = 32), distributed reading is ENABLED.
+=>> PBS: job killed: walltime 86353 exceeded limit 86340

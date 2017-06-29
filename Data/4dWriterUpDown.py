@@ -12,8 +12,8 @@ for root, dirs, files in os.walk(r'.'):
 			filenames.append(file)
 
 
-oFile = "./numuEReg/TrainData.txt"
-oFileTest = "./numuEReg/TestData.txt"
+oFile = "./numuUpDown/TrainData.txt"
+oFileTest = "./numuUpDown/TestData.txt"
 
 
 f = open(oFile, 'w')
@@ -27,20 +27,29 @@ with open(r'./numuxyzt.csv') as data:
 	fTest = open(oFileTest, 'a')
 
 	i = 1
-	
+	up = 0
+	down = 0
+		
 	print("start!")
 	for line in data:
 		#print(line)
 		values = line.split(',')
 
-		E = math.log10(float(values[6])) / 10
+		z = values[5]
+		
+		if float(z) > 0:
+			z = "1 0"
+			up = up + 1
+		else:
+			z = "0 1"
+			down = down + 1
 		
 
 		del values[:11]
 		if rd.random() < 0.1:
-			fTest.write('|labels ' + str(E) + ' |features ' + ' '.join(values))
+			fTest.write('|labels ' + z + ' |features ' + ' '.join(values))
 		else:
-			f.write('|labels ' + str(E) + ' |features ' + ' '.join(values))
+			f.write('|labels ' + z + ' |features ' + ' '.join(values))
 		
 		i += 1
 		if i % 1000 == 0:
@@ -49,3 +58,4 @@ with open(r'./numuxyzt.csv') as data:
 
 	f.close()
 	print("finished!")
+	print("Up going: " + str(up) + "\tDown going: " + str(down))

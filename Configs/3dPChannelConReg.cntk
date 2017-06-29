@@ -16,7 +16,7 @@ Train = {
     action = "train"
 
     BrainScriptNetworkBuilder = {
-        imageShape = 11:11:18:100
+        imageShape = 11:11:18:50
         labelDim = 1
 
         featMean = 128
@@ -65,7 +65,7 @@ Train = {
 
     SGD = {
         epochSize = 0
-        minibatchSize = 32
+        minibatchSize = 24
 
         learningRatesPerSample = 0.0015625*10:0.00046875*10:0.00015625*10:0.000046875
         momentumAsTimeConstant = 0*20:607.44
@@ -83,7 +83,7 @@ Train = {
         randomize = true
         keepDataInMemory = false     # cache all data in memory 	 
         input = {
-            features = { dim = 217800 ; format = "dense" }
+            features = { dim = 108900 ; format = "dense" }
             labels   = { dim = 1 ;   format = "dense" }
         }
     }
@@ -98,7 +98,7 @@ Eval = {
         readerType = "CNTKTextFormatReader"
         file = "$DataDir$/TestDataEnergyReg.txt"
         input = {
-            features = { dim = 217800 ; format = "dense" }
+            features = { dim = 108900 ; format = "dense" }
             labels   = { dim = 1 ;   format = "dense" }
         }
     }

@@ -1,0 +1,122 @@
+# ConvNet applied on CIFAR-10 dataset, with no data augmentation.
+
+command = Train:Eval
+
+precision = "float"; traceLevel = 1 ; deviceId = "auto"
+profilerEnabled = true
+parallelTrain = true
+
+rootDir = "/home/woody/capn/mppi027h/km3net" ; 
+dataDir = "$rootDir$/Data/numuUpDown" ;
+configDir = "$rootDir$/Configs"
+outputDir = "$rootDir$/Output/OutputRegResNet" ;
+
+modelPath = "$outputDir$/Models/ConvNetEnergyRegOnTrain"
+
+
+
+Train = {
+    action = "train"
+
+    BrainScriptNetworkBuilder = {
+        include "$configDir$/Macros.bs"
+
+        imageShape  = 11:11:18:50:1                  # image dimensions
+        labelDim    = 2                      		 # number of distinct labels
+
+        #cMap        = 64:128:256:512 
+		cMap        = 8:16:32:64
+        numLayers   = 3:3:5:2
+        bnTimeConst = 4096
+
+        model = Sequential(
+            # conv1 and max pooling
+            ConvBNReLULayer {cMap[0], (5:5:5:5), (1:1:1:1), bnTimeConst} :
+            #MaxPoolingLayer {(3:3:3:3), stride = (1:1:1:2), pad = true} :
+            ResNetBasicStack {numLayers[0], cMap[0], bnTimeConst} :
+
+            ResNetBasicInc {cMap[1], (2:2:2:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[1], cMap[1], bnTimeConst} :
+
+            ResNetBasicInc {cMap[2], (2:2:3:4), bnTimeConst} :
+            ResNetBasicStack {numLayers[2], cMap[2], bnTimeConst} :
+
+            ResNetBasicInc {cMap[3], (1:1:1:2), bnTimeConst} :
+            ResNetBasicStack {numLayers[3], cMap[3], bnTimeConst} :
+
+            # avg pooling
+            AveragePoolingLayer {(3:3:3:3), stride = 1} :
+
+            # FC
+            LinearLayer {labelDim, init = 'uniform'}
+        )
+
+        # inputs
+        features    = Input {imageShape}
+        labels      = Input {labelDim}
+
+        # apply model to features
+        z           = model (features)
+
+        # loss and error computation
+        ce          = CrossEntropyWithSoftmax   (labels, z)
+        errs        = ClassificationError       (labels, z)
+        top5Errs    = ClassificationError       (labels, z, topN = 5)
+
+        # declare special nodes
+        featureNodes    = (features)
+        labelNodes      = (labels)
+        criterionNodes  = (ce)
+        evaluationNodes = (errs) # top5Errs only used in Eval
+        outputNodes     = (z)
+    }
+
+    SGD = {
+        epochSize = 30000
+        minibatchSize = 128
+        maxEpochs = 150
+        learningRatesPerMB = 1*20: 0.1*20: 0.01*20: 0.001
+        momentumPerMB = 0.9
+        gradUpdateType = "None"
+        L2RegWeight = 0.0001
+        dropoutRate = 0
+        numMBsToShowResult = 500
+
+        disableRegInBatchNormalization = true
+
+        ParallelTrain = {
+            parallelizationMethod = "DataParallelSGD"
+            distributedMBReading = true
+            parallelizationStartEpoch = 1
+            DataParallelSGD = {
+                gradientBits = 32
+            }
+        }
+	}
+
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "$DataDir$/TrainData.txt"
+        randomize = true
+        keepDataInMemory = false     # cache all data in memory 	 
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}
+
+# Eval action
+Eval = {
+    action = "eval"
+    minibatchSize = 32
+    #evalNodeNames = errs:top5Errs  # also test top-5 error rate
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "$DataDir$/TestData.txt"
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
+        }
+    }
+}

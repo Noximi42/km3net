@@ -1,9 +1,15 @@
 Data/*.csv*
 Data/*.txt
-Output/Models/ConvNet*
+Data/numuUpDown/*
+Data/numuEReg/*
+
+Output/*
+Output/OutputERegResNet/*
 OutputReg/Models/ConvNet*
 OutputRegPChannels/Models/*
 Submit/Regression/*.out
 Submit/Regression/*.err
 Submit/UpDownClassification/*.out
 Submit/UpDownClassification/*err
+Submit/ResNet/*.out
+Sbmit/ResNet/*.err

@@ -12,8 +12,8 @@ for root, dirs, files in os.walk(r'.'):
 			filenames.append(file)
 
 
-oFile = "./TrainDataReg.txt"
-oFileTest = "./TestDataReg.txt"
+oFile = "./numuEReg/TrainData.txt"
+oFileTest = "./numuEReg/TestData.txt"
 
 
 f = open(oFile, 'w')
@@ -39,7 +39,7 @@ with open(r'./numuxyzt.csv') as data:
 		E = math.log10(float(values[6])) / 10
 		
 
-		del values[:9]
+		del values[:11]
 		if rd.random() < 0.1:
 			fTest.write('|labels ' + str(x) + ' ' + ' ' + str(y) + ' ' + str(z) + ' ' + str(E) + ' |features ' + ' '.join(values))
 		else:

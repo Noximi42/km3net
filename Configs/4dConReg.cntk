@@ -6,7 +6,7 @@ precision = "float"; traceLevel = 1 ; deviceId = "auto"
 profilerEnabled = true
 parallelTrain = true
 
-rootDir = "/home/woody/capn/mppi027h/km3net" ; dataDir = "$rootDir$/Data" ;
+rootDir = "/home/woody/capn/mppi027h/km3net" ; dataDir = "$rootDir$/Data/numuEReg" ;
 outputDir = "$rootDir$/OutputReg" ;
 
 modelPath = "$outputDir$/Models/ConvNetEnergyReg"
@@ -16,8 +16,8 @@ Train = {
     action = "train"
 
     BrainScriptNetworkBuilder = {
-        imageShape = 11:11:18:100:1
-        labelDim = 1
+        imageShape = 11:11:18:50:1
+        labelDim = 2
 
         featMean = 128
         featScale = 1/256
@@ -26,7 +26,7 @@ Train = {
         model = Sequential (
             #Normalize {featMean, featScale} :
             ConvolutionalLayer {4, (3:3:3:3), pad = true} : ReLU :  
-			  MaxPoolingLayer {(2:2:2:4), stride = (2:2:2:4), pad = true} :	#(6:6:9:25)
+			  MaxPoolingLayer {(2:2:2:2), stride = (2:2:2:2), pad = true} :	#(6:6:9:25)
 			ConvolutionalLayer {32, (3:3:3:3), pad = true} : ReLU : 
 			ConvolutionalLayer {32, (3:3:3:3), pad = true} : ReLU : 
 			  MaxPoolingLayer {(1:1:1:2), stride = (1:1:1:2)} :  			#(6:6:9:12)
@@ -64,27 +64,27 @@ Train = {
     }
 
     SGD = {
-        epochSize = 0
-        minibatchSize = 32
+        epochSize = 50000 
+        minibatchSize = 64
 
-        learningRatesPerSample = 0.0015625*10:0.00046875*10:0.00015625*10:0.000046875
-        momentumAsTimeConstant = 0*20:607.44
+        learningRatesPerSample = 0.00015625*1:0.000046875*1:0.000015625*1:0.0000046875
+        momentumAsTimeConstant = 600*5:6400
         maxEpochs = 100
-        L2RegWeight = 0.002
-        dropoutRate = 0*5:0.5
+        L2RegWeight = 0.03
+        dropoutRate = 0*10:0.5
 
-        
+        #firstMBsToShowResult = 10 ; numMBsToShowResult = 100
 		
     }
 
     reader = {
         readerType = "CNTKTextFormatReader"
-        file = "$DataDir$/TrainDataEnergyReg.txt"
+        file = "$DataDir$/TestData.txt"
         randomize = true
         keepDataInMemory = false     # cache all data in memory 	 
         input = {
-            features = { dim = 217800 ; format = "dense" }
-            labels   = { dim = 1 ;   format = "dense" }
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
         }
     }
 }
@@ -96,10 +96,10 @@ Eval = {
     evalNodeNames = errs:top5Errs  # also test top-5 error rate
     reader = {
         readerType = "CNTKTextFormatReader"
-        file = "$DataDir$/TestDataEnergyReg.txt"
+        file = "$DataDir$/TestData.txt"
         input = {
-            features = { dim = 217800 ; format = "dense" }
-            labels   = { dim = 1 ;   format = "dense" }
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 2 ;   format = "dense" }
         }
     }
 }

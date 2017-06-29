@@ -1,0 +1,15 @@
+#!/bin/bash -l
+#PBS -l nodes=1:ppn=16:gtx1080,walltime=23:59:00
+#PBS -N cntkResNetEReg
+#PBS -o cntkResNet8.out -e cntkResNet8.err
+
+export LD_LIBRARY_PATH=~/cuDNN/cuda/lib64/
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/cntk/cntk/dependencies/lib/
+
+module load cuda
+module load openmpi/1.10.5-gcc
+ulimit -s 65536
+
+cd /home/hpc/capn/mppi027h/
+
+mpiexec --npernode 4  cntk/cntk/bin/cntk  configFile=/home/woody/capn/mppi027h/km3net/Configs/4dConERegResNet34.cntk 
