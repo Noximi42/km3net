@@ -12,4 +12,6 @@ Submit/Regression/*.err
 Submit/UpDownClassification/*.out
 Submit/UpDownClassification/*err
 Submit/ResNet/*.out
-Sbmit/ResNet/*.err
+Submit/ResNet/*.err
+Submit/3dResNet/*.out
+Submit/3dResNet/*.err

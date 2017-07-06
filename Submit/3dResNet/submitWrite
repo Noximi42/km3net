@@ -1,0 +1,31 @@
+#!/bin/bash -l
+#PBS -l nodes=1:ppn=4:gtx980,walltime=7:59:00
+#PBS -N cntk3dResNetERegWrite
+#PBS -o cntk3dResNetWrite.out -e cntk3dResNetWrite.err
+
+export LD_LIBRARY_PATH=~/cuDNN/cuda/lib64/
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/cntk/cntk/dependencies/lib/
+
+module load cuda
+module load openmpi/1.10.5-gcc
+ulimit -s 65536
+
+for i in {0..60}
+do
+	cd /home/woody/capn/mppi027h/km3net/Configs
+		
+	sed -i "142s/.*/outputPath = \"\$OutputDir\$\/Output${i}\"/" "3dpChannelERegResNet34.cntk"
+	sed '142q;d' 3dpChannelERegResNet34.cntk
+	
+	cd /home/woody/capn/mppi027h/km3net/Output/Output3dPChannelERegResNet/Models
+	mv 3dPChannelConvNetERegResNet.${i} 3dPChannelConvNetERegResNet
+	
+	~/cntk/cntk/bin/cntk  configFile=/home/woody/capn/mppi027h/km3net/Configs/3dpChannelERegResNet34.cntk command=Output
+	
+	mv 3dPChannelConvNetERegResNet 3dPChannelConvNetERegResNet.${i}
+	
+	cd /home/woody/capn/mppi027h/km3net/Output/Output3dPChannelERegResNet
+	paste Output.labels Output${i}.z > ReconstEnrgy${i}
+	
+done
+

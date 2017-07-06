@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #PBS -l nodes=1:ppn=16:gtx1080,walltime=23:59:00
 #PBS -N cntkResNetEReg3D
-#PBS -o cntkResNetTrain1.out -e cntkResNetTrain1.err
+#PBS -o cntkResNet1.out -e cntkResNet1.err
 
 export LD_LIBRARY_PATH=~/cuDNN/cuda/lib64/
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/cntk/cntk/dependencies/lib/
