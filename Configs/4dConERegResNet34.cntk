@@ -4,6 +4,7 @@ command = Train #:Eval:Output
 
 precision = "float"; traceLevel = 1 ; deviceId = "auto"
 profilerEnabled = true
+#profilerSyncGpu = false
 parallelTrain = true
 
 rootDir = "/home/woody/capn/mppi027h/km3net" ; 
@@ -31,7 +32,7 @@ Train = {
 
         model = Sequential(
             # conv1 and max pooling
-            ConvBNReLULayer {cMap[0], (5:5:5:5), (1:1:1:1), bnTimeConst} :
+            ConvBNReLULayer {cMap[0], (3:3:3:3), (1:1:1:1), bnTimeConst} :
             #MaxPoolingLayer {(3:3:3:3), stride = (1:1:1:2), pad = true} :
             ResNetBasicStack {numLayers[0], cMap[0], bnTimeConst} :
 
@@ -45,7 +46,7 @@ Train = {
             ResNetBasicStack {numLayers[3], cMap[3], bnTimeConst} :
 
             # avg pooling
-            AveragePoolingLayer {(3:3:3:3), stride = 1} :
+            AveragePoolingLayer {(3:3:3:4), stride = 1} :
 
             # FC
             LinearLayer {labelDim, init = 'uniform'}
@@ -73,7 +74,7 @@ Train = {
 
     SGD = {
         epochSize = 30000
-        minibatchSize = 128
+        minibatchSize = 96
         maxEpochs = 150
         learningRatesPerMB = 1*20: 0.1*20: 0.01*20: 0.001*20:0.0005
         momentumPerMB = 0.9
@@ -81,15 +82,17 @@ Train = {
         L2RegWeight = 0.0001
         dropoutRate = 0
         numMBsToShowResult = 500
+		
 
         disableRegInBatchNormalization = true
 
         ParallelTrain = {
             parallelizationMethod = "DataParallelSGD"
             distributedMBReading = true
-            parallelizationStartEpoch = 1
+            parallelizationStartEpoch = 2
+			syncPerfStats = 10
             DataParallelSGD = {
-                gradientBits = 32
+                gradientBits = 1
             }
         }
 	}

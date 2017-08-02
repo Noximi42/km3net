@@ -4,6 +4,7 @@ command = Train #:Eval:Output
 
 precision = "float"; traceLevel = 1 ; deviceId = "auto"
 profilerEnabled = true
+#profilerSyncGpu = false
 parallelTrain = true
 
 rootDir = "/home/woody/capn/mppi027h/km3net" ; 
@@ -28,11 +29,12 @@ Train = {
 		#cMap        = 8:16:32:64
 		#cMap        = 2:4:8:16
         numLayers   = 3:3:5:2
+		#numLayers   = 1:1:1:1
         bnTimeConst = 4096
 
         model = Sequential(
             # conv1 and max pooling
-            ConvBNReLULayer {cMap[0], (5:5:5), (1:1:1), bnTimeConst} :
+            ConvBNReLULayer {cMap[0], (3:3:3), (1:1:1), bnTimeConst} :
             #MaxPoolingLayer {(3:3:3), stride = (1:1:1), pad = true} :
             ResNetBasicStack {numLayers[0], cMap[0], bnTimeConst} :
 
@@ -46,7 +48,7 @@ Train = {
             ResNetBasicStack {numLayers[3], cMap[3], bnTimeConst} :
 
             # avg pooling
-            AveragePoolingLayer {(3:3:3), stride = 1} :
+            AveragePoolingLayer {(3:3:3), stride = 1, pad = false} :
 
             # FC
             LinearLayer {labelDim, init = 'uniform'}
@@ -139,7 +141,7 @@ Output = {
 
 	outputNodeNames = z    # Select the nodes to print. If this is not given, the nodes tagged as "output" are printed instead.
 
-outputPath = "$OutputDir$/Output17"
+outputPath = "$OutputDir$/Output55"
 }
 
 
