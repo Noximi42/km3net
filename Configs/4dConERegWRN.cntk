@@ -1,0 +1,162 @@
+# ConvNet applied on CIFAR-10 dataset, with no data augmentation.
+
+command = Train #:Eval:Output 
+
+precision = "float"; traceLevel = 1 ; deviceId = "auto"
+profilerEnabled = false
+#profilerSyncGpu = false
+parallelTrain = true
+
+rootDir = "/home/woody/capn/mppi027h/km3net" ; 
+dataDir = "$rootDir$/Data/numuEReg" ;
+configDir = "$rootDir$/Configs"
+outputDir = "$rootDir$/Output/OutputEWRN" ;
+
+modelPath = "$outputDir$/Models/ConvEnergyWRN"
+
+
+
+Train = {
+    action = "train"
+
+    BrainScriptNetworkBuilder = {
+        include "$configDir$/MacrosWRN.bs"
+
+        imageShape  = 11:11:18:50:1                  # image dimensions
+        labelDim    = 1                      		 # number of distinct labels
+
+        #cMap        = 64:128:256:512 
+		filters      = 16:32:64
+		k 			 = 8
+        N   		 = 2
+        bnTimeConst = 4096
+
+        model = Sequential(
+            # Initial Layer (input)
+            ConvBNReLULayer {16, (3:3:3:3), stride = 1, bnTimeConst} :
+            
+			# ???
+            ResNetBasicInc {128, stride = (1:1:1:2), bnTimeConst} :
+            ResNetBasicStack {N, 128, bnTimeConst, 0.3} :
+
+            ResNetBasicInc {256, (2:2:3:4), bnTimeConst} :
+            ResNetBasicStack {N, 256, bnTimeConst, 0.3} :
+
+            ResNetBasicInc {512, (2:2:3:2), bnTimeConst} :
+            ResNetBasicStack {N, 512, bnTimeConst, 0.3} :
+
+            # avg pooling
+            AveragePoolingLayer {(3:3:3:4), stride = 1} :
+
+            # FC
+            LinearLayer {labelDim, init = 'uniform'}
+        )
+
+        # inputs
+        features    = Input {imageShape}
+        labels      = Input {labelDim}
+
+        # apply model to features
+        z           = model (features)
+
+        # loss and error computation
+        diff = labels - z
+        sqerr = ReduceSum (diff.*diff, axis=1)
+		rmse = Sqrt (sqerr / labelDim)
+
+        # declare special nodes
+        featureNodes    = (features)
+        labelNodes      = (labels)
+        criterionNodes  = (rmse)
+        evaluationNodes = (rmse) # top5Errs only used in Eval
+        outputNodes     = (z)
+    }
+
+    SGD = {
+        epochSize = 0
+        minibatchSize = 128
+        maxEpochs = 150
+        learningRatesPerMB = 1*20: 0.1*20: 0.01*20: 0.001*20:0.0005
+        momentumPerMB = 0.9
+        gradUpdateType = "None"
+        L2RegWeight = 0.0001
+        dropoutRate = 0
+        numMBsToShowResult = 256
+		
+
+        disableRegInBatchNormalization = true
+
+        ParallelTrain = {
+            parallelizationMethod = "DataParallelSGD"
+            distributedMBReading = true
+            parallelizationStartEpoch = 2
+			syncPerfStats = 10
+            DataParallelSGD = {
+                gradientBits = 1
+            }
+        }
+	}
+
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "$DataDir$/TrainData.txt"
+        randomize = true
+        keepDataInMemory = false     # cache all data in memory 	 
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 1 ;   format = "dense" }
+        }
+    }
+}
+
+# Eval action
+Eval = {
+    action = "eval"
+    minibatchSize = 16
+    #evalNodeNames = errs:top5Errs  # also test top-5 error rate
+    reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "$DataDir$/TestData.txt"
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 1 ;   format = "dense" }
+        }
+    }
+}
+
+
+#Write output prediciton to file
+Output = {
+	action = "write"
+	minibatchSize = 512
+	
+	# Parameter values for the reader
+	reader = {
+        readerType = "CNTKTextFormatReader"
+        file = "$DataDir$/TestData.txt"
+        input = {
+            features = { dim = 108900 ; format = "dense" }
+            labels   = { dim = 1 ;   format = "dense" }
+        }
+    }
+
+	outputNodeNames = z : labels    # Select the nodes to print. If this is not given, the nodes tagged as "output" are printed instead.
+
+	outputPath = "$OutputDir$/Output"     # Path to write to. ".NODENAME" will be appended.
+	#outputPath = "-"                           # As an alternative, this prints to stdout.
+
+	# extra formatting options
+	# This is configured to print the classified and ground-truth labels.
+	# To write out the actual posterior probabilities, comment out this section.
+	#format = {
+	#	type = "category"                                # This finds the highest-scoring entry and prints its index.
+	#	labelMappingFile = "$DataDir$/Mapping.txt" # Specifying this as well will translate the index into a string.
+	#	sequenceEpilogue = "\t// %s\n"                   # Append this on every line, %s = node name. Useful when printing to stdout.
+	#}
+}
+
+
+
+
+
+
